@@ -2,7 +2,7 @@ import {ChangeDetectionStrategy, Component} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {RouterOutlet} from '@angular/router'
 
-import {RegisterComponent} from '@auth/register/register.component'
+import {RegisterComponent} from '@auth/components/register/register.component'
 
 @Component({
   selector: 'ngrx-auth',

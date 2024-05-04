@@ -2,6 +2,9 @@ import {FormBuilder, FormGroup, ReactiveFormsModule, Validators} from '@angular/
 import {ChangeDetectionStrategy, Component, inject, OnInit} from '@angular/core'
 import {CommonModule} from '@angular/common'
 import {RouterLink} from '@angular/router'
+import {Store} from '@ngrx/store'
+
+import {registerAction} from '@auth/store/actions/register.action'
 
 @Component({
   selector: 'ngrx-register',
@@ -13,6 +16,7 @@ import {RouterLink} from '@angular/router'
 })
 export class RegisterComponent implements OnInit {
   fb = inject(FormBuilder)
+  store = inject(Store)
 
   form: FormGroup = this.fb.group({
     username: ['', Validators.required],
@@ -24,5 +28,6 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     console.log('submit', this.form.value, this.form.valid)
+    this.store.dispatch(registerAction(this.form.value))
   }
 }

@@ -27,6 +27,7 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {}
 
   onSubmit(): void {
-    this.store.dispatch(registerAction(this.form.value))
+    const user = this.form.value
+    this.store.dispatch(registerAction({user}))
   }
 }

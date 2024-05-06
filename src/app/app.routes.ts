@@ -5,7 +5,7 @@ import {RegisterComponent} from '@auth/components/register/register.component'
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'register§',
+    redirectTo: 'register',
     pathMatch: 'full',
   },
   {

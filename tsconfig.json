@@ -4,6 +4,7 @@
     "paths": {
       "@auth/*": ["./src/app/auth/*"],
       "@shared/*": ["./src/app/shared/*"],
+      "@environments": ["./src/environments/environment.development.ts"],
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

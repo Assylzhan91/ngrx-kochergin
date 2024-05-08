@@ -1,0 +1,7 @@
+<ul class="error-messages">
+  @if (errors) {
+    @for (error of this.errorMessages; track error) {
+      <li>{{ error }}</li>
+    }
+  }
+</ul>

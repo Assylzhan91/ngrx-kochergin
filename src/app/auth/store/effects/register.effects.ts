@@ -1,4 +1,5 @@
 import {Actions, createEffect, ofType} from '@ngrx/effects'
+import {HttpErrorResponse} from '@angular/common/http'
 import {inject, Injectable} from '@angular/core'
 
 import {CurrentUserInterface} from '@shared/types/user.interface'
@@ -9,6 +10,7 @@ import {
   registerFailureAction,
   registerSuccessAction,
 } from '@auth/store/actions/register.action'
+import {AuthErrorResponseInterface} from '@shared/types/auth-error-response.interface'
 
 @Injectable()
 export class RegisterEffects {
@@ -18,9 +20,9 @@ export class RegisterEffects {
       switchMap(({request}) => {
         return authService.register(request).pipe(
           map((currentUser: CurrentUserInterface) => registerSuccessAction({currentUser})),
-          catchError(() => {
-            return of(registerFailureAction())
-          }),
+          catchError((res: HttpErrorResponse) =>
+            of(registerFailureAction(res.error as {errors: AuthErrorResponseInterface})),
+          ),
         )
       }),
     )

@@ -1,5 +1,6 @@
 import {createAction, props} from '@ngrx/store'
 
+import {AuthErrorResponseInterface} from '@shared/types/auth-error-response.interface'
 import {RegisterRequestInterface} from '@auth/types/register-request.interface'
 import {CurrentUserInterface} from '@shared/types/user.interface'
 import {ActionType} from '@auth/store/action.types'
@@ -14,4 +15,7 @@ export const registerSuccessAction = createAction(
   props<{currentUser: CurrentUserInterface}>(),
 )
 
-export const registerFailureAction = createAction(ActionType.REGISTER_FAILURE)
+export const registerFailureAction = createAction(
+  ActionType.REGISTER_FAILURE,
+  props<{errors: AuthErrorResponseInterface}>(),
+)

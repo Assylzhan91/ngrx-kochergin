@@ -29,9 +29,9 @@ export class RegisterComponent implements OnInit {
   isSubmittingSignal = this.store.selectSignal(isSubmittingSelector)
 
   form: FormGroup = this.fb.group({
-    username: ['', Validators.required],
-    email: ['', Validators.required],
-    password: ['', Validators.required],
+    username: ['frgthygfwerthyrethygre', Validators.required],
+    email: ['fgdfhsdrgthy12f@ffghtrhr.dasd', Validators.required],
+    password: ['sdfghjtrewtytujhtgrf4546f!±34', Validators.required],
   })
 
   ngOnInit(): void {}

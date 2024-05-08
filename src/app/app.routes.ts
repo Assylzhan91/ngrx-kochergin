@@ -5,16 +5,21 @@ import {Routes} from '@angular/router'
 import {RegisterComponent} from '@auth/components/register/register.component'
 import {authFeatureKey, authReducer} from '@auth/store/reducers/auth.reducer'
 import {RegisterEffects} from '@auth/store/effects/register.effects'
+import {HomeComponent} from './home/home.component'
 import {AuthComponent} from '@auth/auth.component'
 
 export const routes: Routes = [
   {
-    path: '',
-    redirectTo: 'register',
-    pathMatch: 'full',
+    path: 'home',
+    component: HomeComponent,
   },
   {
     path: '',
+    redirectTo: 'auth/register',
+    pathMatch: 'full',
+  },
+  {
+    path: 'auth',
     component: AuthComponent,
     children: [
       {

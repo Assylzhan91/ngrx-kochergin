@@ -15,7 +15,7 @@ export class AuthService {
 
   register(data: RegisterRequestInterface): Observable<CurrentUserInterface> {
     return this.http
-      .post<AuthResponseInterface>(`${environment.baseUrl}users`, data)
+      .post<AuthResponseInterface>(`${environment.baseUrl}users`, {user: data})
       .pipe(map((response: AuthResponseInterface) => response.user))
   }
 }

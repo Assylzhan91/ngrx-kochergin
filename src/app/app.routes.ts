@@ -1,8 +1,10 @@
+import {provideEffects} from '@ngrx/effects'
 import {provideState} from '@ngrx/store'
 import {Routes} from '@angular/router'
 
 import {RegisterComponent} from '@auth/components/register/register.component'
 import {authFeatureKey, authReducer} from '@auth/store/reducers/auth.reducer'
+import {RegisterEffects} from '@auth/store/effects/register.effects'
 import {AuthComponent} from '@auth/auth.component'
 
 export const routes: Routes = [
@@ -20,6 +22,9 @@ export const routes: Routes = [
         component: RegisterComponent,
       },
     ],
-    providers: [provideState({name: authFeatureKey, reducer: authReducer})],
+    providers: [
+      provideState({name: authFeatureKey, reducer: authReducer}),
+      provideEffects([RegisterEffects]),
+    ],
   },
 ]

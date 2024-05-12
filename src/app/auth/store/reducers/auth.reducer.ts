@@ -6,6 +6,7 @@ import {
   registerFailureAction,
   registerSuccessAction,
 } from '@auth/store/actions/register.action'
+import {loginAction, loginFailureAction, loginSuccessAction} from '@auth/store/actions/login.action'
 
 export const authFeatureKey = 'auth'
 
@@ -33,5 +34,21 @@ export const authReducer = createReducer(
     ...state,
     authErrorResponse: errors,
     isSubmitting: false,
+  })),
+
+  on(loginAction, (state: AuthStateInterface) => ({
+    ...state,
+    isSubmitting: true,
+    authErrorResponse: null,
+  })),
+  on(loginSuccessAction, (state: AuthStateInterface, {currentUser}) => ({
+    ...state,
+    isSubmitting: false,
+    currentUser,
+  })),
+  on(loginFailureAction, (state: AuthStateInterface, {errors}) => ({
+    ...state,
+    isSubmitting: false,
+    authErrorResponse: errors,
   })),
 )

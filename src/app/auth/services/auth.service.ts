@@ -4,6 +4,7 @@ import {map, Observable} from 'rxjs'
 
 import {RegisterRequestInterface} from '@auth/types/register-request.interface'
 import {AuthResponseInterface} from '@auth/types/auth-response.interface'
+import {LoginRequestInterface} from '@auth/types/login-request.interface'
 import {CurrentUserInterface} from '@shared/types/user.interface'
 import {environment} from '@environments'
 
@@ -16,6 +17,16 @@ export class AuthService {
   register(data: RegisterRequestInterface): Observable<CurrentUserInterface> {
     return this.http
       .post<AuthResponseInterface>(`${environment.baseUrl}users`, {user: data})
-      .pipe(map((response: AuthResponseInterface) => response.user))
+      .pipe(map(this.getUser))
+  }
+
+  login(data: LoginRequestInterface): Observable<CurrentUserInterface> {
+    return this.http
+      .post<AuthResponseInterface>(`${environment.baseUrl}users/login`, {user: data})
+      .pipe(map(this.getUser))
+  }
+
+  getUser(response: AuthResponseInterface): CurrentUserInterface {
+    return response.user
   }
 }

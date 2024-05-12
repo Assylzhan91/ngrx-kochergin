@@ -15,7 +15,7 @@ import {
 } from '@auth/store/actions/register.action'
 
 @Injectable()
-export class RegisterEffects {
+export class RegisterEffect {
   persistenceService = inject(PersistenceService)
   authService = inject(AuthService)
   actions$ = inject(Actions)

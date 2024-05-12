@@ -8,3 +8,5 @@ export interface CurrentUserInterface {
 }
 
 export type UserTypes = Pick<CurrentUserInterface, 'email' | 'username'> & {password: string}
+
+export type LoginTypes = Pick<UserTypes, 'email' | 'password'>

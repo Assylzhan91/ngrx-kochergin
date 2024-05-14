@@ -37,7 +37,7 @@ export class LoginEffect {
   loginAfterSubmit$ = createEffect(
     () => {
       return this.actions$.pipe(
-        ofType(loginAction),
+        ofType(loginSuccessAction),
         tap(() => {
           this.router.navigate(['/home'])
         }),

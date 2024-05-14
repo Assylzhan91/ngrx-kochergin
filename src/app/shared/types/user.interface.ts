@@ -1,3 +1,5 @@
+import {FormControl} from '@angular/forms'
+
 export interface CurrentUserInterface {
   id: number
   email: string
@@ -10,3 +12,8 @@ export interface CurrentUserInterface {
 export type UserTypes = Pick<CurrentUserInterface, 'email' | 'username'> & {password: string}
 
 export type LoginTypes = Pick<UserTypes, 'email' | 'password'>
+
+export interface LoginInterface {
+  email: FormControl<string | null>
+  password: FormControl<string | null>
+}

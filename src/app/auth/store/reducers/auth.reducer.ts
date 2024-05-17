@@ -44,6 +44,7 @@ export const authReducer = createReducer(
   on(loginSuccessAction, (state: AuthStateInterface, {currentUser}) => ({
     ...state,
     isSubmitting: false,
+    isLoggedIn: true,
     currentUser,
   })),
   on(loginFailureAction, (state: AuthStateInterface, {errors}) => ({

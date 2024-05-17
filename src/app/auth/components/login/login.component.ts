@@ -6,7 +6,12 @@ import {select, Store} from '@ngrx/store'
 import {Observable} from 'rxjs'
 
 import {AuthErrorResponseInterface} from '@shared/types/auth-error-response.interface'
-import {authErrorResponseSelector, isSubmittingSelector} from '@auth/store/selectors'
+import {
+  authErrorResponseSelector,
+  isAnonymousSelector,
+  isLoggedInSelector,
+  isSubmittingSelector,
+} from '@auth/store/selectors'
 import {AuthErrorComponent} from '@shared/components/auth-error/auth-error.component'
 import {loginAction} from '@auth/store/actions/login.action'
 import {LoginInterface} from '@shared/types/user.interface'
@@ -23,6 +28,8 @@ export class LoginComponent implements OnInit {
   store = inject(Store)
 
   isSubmitting$: Observable<boolean> = this.store.pipe(select(isSubmittingSelector))
+  isLoggedIn$: Observable<boolean | null> = this.store.pipe(select(isLoggedInSelector))
+  isAnonymousSelector$: Observable<boolean | null> = this.store.pipe(select(isAnonymousSelector))
   authErrorResponse$: Observable<AuthErrorResponseInterface | null> = this.store.pipe(
     select(authErrorResponseSelector),
   )

@@ -2,9 +2,15 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
-      "@auth/*": ["./src/app/auth/*"],
-      "@shared/*": ["./src/app/shared/*"],
-      "@environments": ["./src/environments/environment.development.ts"],
+      "@auth/*": [
+        "./src/app/auth/*"
+      ],
+      "@environments": [
+        "./src/environments/environment.development.ts"
+      ],
+      "@shared/*": [
+        "./src/app/shared/*"
+      ]
     },
     "outDir": "./dist/out-tsc",
     "strict": true,

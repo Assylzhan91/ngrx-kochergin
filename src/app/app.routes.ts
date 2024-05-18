@@ -2,6 +2,7 @@ import {provideEffects} from '@ngrx/effects'
 import {provideState} from '@ngrx/store'
 import {Routes} from '@angular/router'
 
+import {GetCurrentUserEffect} from '@auth/store/effects/get-current-user.effect'
 import {RegisterComponent} from '@auth/components/register/register.component'
 import {authFeatureKey, authReducer} from '@auth/store/reducers/auth.reducer'
 import {LoginComponent} from '@auth/components/login/login.component'

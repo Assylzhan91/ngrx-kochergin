@@ -13,20 +13,25 @@ import {environment} from '@environments'
 })
 export class AuthService {
   http = inject(HttpClient)
+  baseURL = environment.baseUrl
 
   register(data: RegisterRequestInterface): Observable<CurrentUserInterface> {
     return this.http
-      .post<AuthResponseInterface>(`${environment.baseUrl}users`, {user: data})
+      .post<AuthResponseInterface>(`${this.baseURL}users`, {user: data})
       .pipe(map(this.getUser))
   }
 
   login(data: LoginRequestInterface): Observable<CurrentUserInterface> {
     return this.http
-      .post<AuthResponseInterface>(`${environment.baseUrl}users/login`, {user: data})
+      .post<AuthResponseInterface>(`${this.baseURL}users/login`, {user: data})
       .pipe(map(this.getUser))
   }
 
   getUser(response: AuthResponseInterface): CurrentUserInterface {
     return response.user
+  }
+
+  getCurrentUser(): Observable<CurrentUserInterface> {
+    return this.http.get<AuthResponseInterface>(`${this.baseURL}user`).pipe(map(this.getUser))
   }
 }

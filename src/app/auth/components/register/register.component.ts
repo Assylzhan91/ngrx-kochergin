@@ -6,11 +6,7 @@ import {select, Store} from '@ngrx/store'
 import {Observable} from 'rxjs'
 
 import {AuthErrorResponseInterface} from '@shared/types/auth-error-response.interface'
-import {
-  authErrorResponseSelector,
-  isLoggedInSelector,
-  isSubmittingSelector,
-} from '@auth/store/selectors'
+import {authErrorResponseSelector, isSubmittingSelector} from '@auth/store/selectors'
 import {AuthErrorComponent} from '@shared/components/auth-error/auth-error.component'
 import {registerAction} from '@auth/store/actions/register.action'
 
@@ -27,7 +23,6 @@ export class RegisterComponent implements OnInit {
   store = inject(Store)
 
   isSubmitting$: Observable<boolean> = this.store.pipe(select(isSubmittingSelector))
-  isLoggedIn$: Observable<boolean | null> = this.store.pipe(select(isLoggedInSelector))
   authErrorResponse$: Observable<AuthErrorResponseInterface | null> = this.store.pipe(
     select(authErrorResponseSelector),
   )

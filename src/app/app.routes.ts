@@ -10,11 +10,16 @@ import {RegisterEffect} from '@auth/store/effects/register.effect'
 import {LoginEffect} from '@auth/store/effects/login.effect'
 import {HomeComponent} from './home/home.component'
 import {AuthComponent} from '@auth/auth.component'
+import {GlobalFeedComponent} from './global-feed/global-feed.component'
 
 export const routes: Routes = [
   {
     path: 'home',
     component: HomeComponent,
+  },
+  {
+    path: '',
+    component: GlobalFeedComponent,
   },
   {
     path: '',

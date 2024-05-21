@@ -36,8 +36,11 @@ export class LoginComponent implements OnInit {
   isSubmittingSignal = this.store.selectSignal(isSubmittingSelector)
 
   form: FormGroup = this.fb.group<LoginInterface>({
-    email: this.fb.control('', Validators.required),
-    password: this.fb.control('', Validators.required),
+    email: this.fb.control('asylzhan2491bai.asylzhan.com', Validators.required),
+    password: this.fb.control(
+      'asylzhan2491bai.asylzhan.comasylzhan2491bai.asylzhan.com',
+      Validators.required,
+    ),
   })
 
   ngOnInit(): void {}

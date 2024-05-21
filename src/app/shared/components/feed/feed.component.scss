@@ -1,1 +1,11 @@
+.flex {
+  display: flex;
+}
 
+.loading {
+  height: 100vh;
+   > span {
+     margin: auto;
+     font-size: 50px;
+   }
+}

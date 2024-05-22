@@ -1,20 +1,22 @@
 import {ChangeDetectionStrategy, Component, inject, Input, OnInit, Signal} from '@angular/core'
 import {CommonModule, JsonPipe} from '@angular/common'
-import {select, Store} from '@ngrx/store'
+import {RouterLink} from '@angular/router'
+import {Store} from '@ngrx/store'
 
+import {GetFeedResponseInterface} from '@shared/components/feed/models/get-feed-response-interface'
+import {ErrorMessageComponent} from '@shared/components/error-message/error-message.component'
 import {getFeedAction} from '@shared/components/feed/store/actions/get-feed.action'
+import {LoadingComponent} from '@shared/components/loading/loading.component'
 import {
   errorSelector,
   feedSelector,
   isLoadingSelector,
 } from '@shared/components/feed/store/selectors'
-import {GetFeedResponseInterface} from '@shared/components/feed/models/get-feed-response-interface'
-import {RouterLink} from '@angular/router'
 
 @Component({
   selector: 'ngrx-feed',
   standalone: true,
-  imports: [CommonModule, JsonPipe, RouterLink],
+  imports: [CommonModule, JsonPipe, RouterLink, ErrorMessageComponent, LoadingComponent],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,

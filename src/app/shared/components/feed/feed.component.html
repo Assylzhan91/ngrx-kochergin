@@ -1,8 +1,8 @@
 @if (isLoadingSignal()) {
-  <p class="loading flex"><span>Loading...</span></p>
+  <ngrx-loading></ngrx-loading>
 }
 @if (errorSignal()) {
-  <p>Something went wrong!!!</p>
+  <ngrx-error-message message="Error message"></ngrx-error-message>
 }
 
 @if (dataSignal()) {

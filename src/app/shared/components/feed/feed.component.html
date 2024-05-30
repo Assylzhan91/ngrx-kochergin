@@ -27,7 +27,13 @@
       </div>
     </div>
   }
-  PAGINATION
+  <ngrx-pagination
+    [total]="dataSignal()?.articlesCount"
+    [limit]="limit"
+    [currentPage]="currentPage"
+    [url]="''"
+  >
+  </ngrx-pagination>
 } @else {
   <p class="loading flex"><span>No Data</span></p>
 }

@@ -1,28 +1,54 @@
-import {ChangeDetectionStrategy, Component, inject, Input, OnInit, Signal} from '@angular/core'
+import {
+  ChangeDetectionStrategy,
+  Component,
+  DestroyRef,
+  inject,
+  Input,
+  OnInit,
+  Signal,
+} from '@angular/core'
+import {ActivatedRoute, Params, Router, RouterLink} from '@angular/router'
+import {takeUntilDestroyed} from '@angular/core/rxjs-interop'
 import {CommonModule, JsonPipe} from '@angular/common'
-import {RouterLink} from '@angular/router'
 import {Store} from '@ngrx/store'
 
 import {GetFeedResponseInterface} from '@shared/components/feed/models/get-feed-response-interface'
 import {ErrorMessageComponent} from '@shared/components/error-message/error-message.component'
+import {PaginationComponent} from '@shared/components/pagination/pagination.component'
 import {getFeedAction} from '@shared/components/feed/store/actions/get-feed.action'
 import {LoadingComponent} from '@shared/components/loading/loading.component'
+import {environment} from '@environments'
 import {
+  isLoadingSelector,
   errorSelector,
   feedSelector,
-  isLoadingSelector,
 } from '@shared/components/feed/store/selectors'
 
 @Component({
   selector: 'ngrx-feed',
   standalone: true,
-  imports: [CommonModule, JsonPipe, RouterLink, ErrorMessageComponent, LoadingComponent],
+  imports: [
+    CommonModule,
+    JsonPipe,
+    RouterLink,
+    ErrorMessageComponent,
+    LoadingComponent,
+    PaginationComponent,
+  ],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FeedComponent implements OnInit {
+  activatedRoute = inject(ActivatedRoute)
+  destroyRef = inject(DestroyRef)
+  router = inject(Router)
   store = inject(Store)
+
+  limit = environment.limit
+
+  baseUrl!: string
+  currentPage!: number
 
   @Input() articlesUrl!: string
 
@@ -35,5 +61,14 @@ export class FeedComponent implements OnInit {
   }
   initializeValues(): void {
     this.store.dispatch(getFeedAction({url: this.articlesUrl}))
+    this.baseUrl = this.router.url.split('?')[0]
+    this.activatedRoute.queryParams
+      .pipe(takeUntilDestroyed(this.destroyRef))
+      .subscribe((params: Params) => {
+        this.currentPage = +(params as {currentPage: string}).currentPage || 1
+        if (isNaN(this.currentPage)) {
+          throw new Error('Error is maybe NAN or url incorrect')
+        }
+      })
   }
 }

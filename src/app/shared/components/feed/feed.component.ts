@@ -10,7 +10,8 @@ import {
 import {ActivatedRoute, Params, Router, RouterLink} from '@angular/router'
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop'
 import {CommonModule, JsonPipe} from '@angular/common'
-import {Store} from '@ngrx/store'
+import {select, Store} from '@ngrx/store'
+import {Observable} from 'rxjs'
 
 import {GetFeedResponseInterface} from '@shared/components/feed/models/get-feed-response-interface'
 import {ErrorMessageComponent} from '@shared/components/error-message/error-message.component'
@@ -54,7 +55,7 @@ export class FeedComponent implements OnInit {
 
   isLoadingSignal: Signal<boolean> = this.store.selectSignal(isLoadingSelector)
   errorSignal: Signal<string | null> = this.store.selectSignal(errorSelector)
-  dataSignal: Signal<GetFeedResponseInterface | null> = this.store.selectSignal(feedSelector)
+  dataSignal: Observable<GetFeedResponseInterface | null> = this.store.pipe(select(feedSelector))
 
   ngOnInit(): void {
     this.initializeValues()

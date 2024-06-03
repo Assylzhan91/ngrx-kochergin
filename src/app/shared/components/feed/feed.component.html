@@ -5,35 +5,41 @@
   <ngrx-error-message message="Error message"></ngrx-error-message>
 }
 
-@if (dataSignal()) {
-  @for (article of dataSignal()?.articles; track $index) {
-    <div class="article-preview">
-      <div class="article-meta">
-        <a [routerLink]="['/profiles', article.author.username]">
-          <img [src]="article.author.image" [alt]="article.author.username" />
-        </a>
-        <div class="info">
-          <a class="author" [routerLink]="['/profiles', article.author.username]">{{
-            article.author.username
-          }}</a>
-          <span class="date">{{ article.createdAt }}</span>
+@if (dataSignal | async) {
+  @if ((dataSignal | async)?.articles?.length) {
+    @for (article of (dataSignal | async)?.articles; track $index) {
+      <div class="article-preview">
+        <div class="article-meta">
+          <a [routerLink]="['/profiles', article.author.username]">
+            <img [src]="article.author.image" [alt]="article.author.username" />
+          </a>
+          <div class="info">
+            <a class="author" [routerLink]="['/profiles', article.author.username]">{{
+              article.author.username
+            }}</a>
+            <span class="date">{{ article.createdAt }}</span>
+          </div>
+          <div class="pull-xs-right">Add to favorite</div>
+          <a class="preview-link" [routerLink]="['/articles', article.slug]">
+            <h1>{{ article.title }}</h1>
+            <p>{{ article.description }}</p>
+            HERE IS LIST OF TAGS
+          </a>
         </div>
-        <div class="pull-xs-right">Add to favorite</div>
-        <a class="preview-link" [routerLink]="['/articles', article.slug]">
-          <h1>{{ article.title }}</h1>
-          <p>{{ article.description }}</p>
-          HERE IS LIST OF TAGS
-        </a>
       </div>
-    </div>
+    }
+    <ngrx-pagination
+      [total]="(dataSignal | async)!.articlesCount"
+      [limit]="limit"
+      [currentPage]="currentPage"
+      [url]="baseUrl"
+    >
+    </ngrx-pagination>
+  } @else {
+    <p class="loading flex"><span>No Data</span></p>
   }
-  <ngrx-pagination
-    [total]="dataSignal()?.articlesCount"
-    [limit]="limit"
-    [currentPage]="currentPage"
-    [url]="''"
-  >
-  </ngrx-pagination>
 } @else {
-  <p class="loading flex"><span>No Data</span></p>
+  <div class="loading flex">
+    <ngrx-loading></ngrx-loading>
+  </div>
 }

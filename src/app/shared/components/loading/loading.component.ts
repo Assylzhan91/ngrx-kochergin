@@ -6,7 +6,6 @@ import {CommonModule} from '@angular/common'
   standalone: true,
   imports: [CommonModule],
   template: `<p>Loading...</p>`,
-  styleUrl: './loading.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class LoadingComponent {}

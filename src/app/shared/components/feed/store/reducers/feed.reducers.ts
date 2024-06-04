@@ -6,6 +6,7 @@ import {
   getFeedFailureAction,
   getFeedSuccessAction,
 } from '@shared/components/feed/store/actions/get-feed.action'
+import {routerNavigatedAction} from '@ngrx/router-store'
 
 export const feedFeatureKey = 'feed'
 
@@ -30,4 +31,5 @@ export const feedReducer = createReducer(
     ...state,
     isLoading: false,
   })),
+  on(routerNavigatedAction, (state: FeedStateInterface) => initialState),
 )

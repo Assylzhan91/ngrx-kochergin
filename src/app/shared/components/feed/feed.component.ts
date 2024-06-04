@@ -61,15 +61,20 @@ export class FeedComponent implements OnInit {
     this.initializeValues()
   }
   initializeValues(): void {
-    this.store.dispatch(getFeedAction({url: this.articlesUrl}))
     this.baseUrl = this.router.url.split('?')[0]
     this.activatedRoute.queryParams
       .pipe(takeUntilDestroyed(this.destroyRef))
       .subscribe((params: Params) => {
         this.currentPage = +(params as {currentPage: string}).currentPage || 1
+        this.fetchFeed()
         if (isNaN(this.currentPage)) {
           throw new Error('Error is maybe NAN or url incorrect')
         }
       })
+  }
+
+  fetchFeed() {
+    const offset = this.currentPage * this.limit - this.limit
+    this.store.dispatch(getFeedAction({url: this.articlesUrl, offset}))
   }
 }

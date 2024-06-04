@@ -1,7 +1,8 @@
+import {provideHttpClient, withInterceptors} from '@angular/common/http'
+import {provideRouterStore, routerReducer} from '@ngrx/router-store'
 import {ApplicationConfig, isDevMode} from '@angular/core'
 import {provideStoreDevtools} from '@ngrx/store-devtools'
 import {provideState, provideStore} from '@ngrx/store'
-import {provideHttpClient, withInterceptors} from '@angular/common/http'
 import {provideRouter} from '@angular/router'
 import {provideEffects} from '@ngrx/effects'
 
@@ -13,7 +14,10 @@ import {routes} from './app.routes'
 export const appConfig: ApplicationConfig = {
   providers: [
     provideEffects([GetCurrentUserEffect]),
-    provideStore(),
+    provideStore({
+      router: routerReducer,
+    }),
+    provideRouterStore({}),
     provideState({
       name: 'auth',
       reducer: authReducer,

@@ -2,7 +2,12 @@
   <ul class="pagination">
     @for (page of this.pages; track page) {
       <li class="page-item" [ngClass]="{active: page == currentPage}">
-        <a [routerLink]="url" class="page-link" [queryParams]="{currentPage: page}">
+        <a
+          (click)="changePage(page)"
+          [routerLink]="url"
+          class="page-link"
+          [queryParams]="{currentPage: page}"
+        >
           {{ page }}
         </a>
       </li>

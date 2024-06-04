@@ -8,11 +8,11 @@ import {BaseService} from '@shared/services/base.service'
   providedIn: 'root',
 })
 export class FeedService extends BaseService {
-  getFeedList(url: string): Observable<GetFeedResponseInterface> {
+  getFeedList(url: string, offset: number): Observable<GetFeedResponseInterface> {
     return this.http.get<GetFeedResponseInterface>(`${this.baseURL}${url}`, {
       params: {
         limit: 10,
-        offset: 0,
+        offset,
       },
     })
   }

@@ -38,7 +38,7 @@
       "prefix": "ngrx",
       "skipTests": true,
       "changeDetection": "OnPush",
-      "nameAndDirectoryFormat": "derived"
+      "nameAndDirectoryFormat": "as-provided"
     }
   }
 }

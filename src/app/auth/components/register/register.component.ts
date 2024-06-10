@@ -5,7 +5,7 @@ import {RouterLink} from '@angular/router'
 import {select, Store} from '@ngrx/store'
 import {Observable} from 'rxjs'
 
-import {AuthErrorResponseInterface} from '@shared/types/auth-error-response.interface'
+import {AuthErrorResponseInterface} from '@shared/interfaces/auth-error-response.interface'
 import {authErrorResponseSelector, isSubmittingSelector} from '@auth/store/selectors'
 import {AuthErrorComponent} from '@shared/components/auth-error/auth-error.component'
 import {registerAction} from '@auth/store/actions/register.action'

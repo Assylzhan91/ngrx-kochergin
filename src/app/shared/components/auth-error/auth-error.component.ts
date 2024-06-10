@@ -1,10 +1,7 @@
 import {ChangeDetectionStrategy, Component, Input, OnInit} from '@angular/core'
 import {CommonModule} from '@angular/common'
 
-import {AuthErrorResponseInterface} from '@shared/types/auth-error-response.interface'
-import {AuthService} from '@auth/services/auth.service'
-import {provideState} from '@ngrx/store'
-import {authFeatureKey, authReducer} from '@auth/store/reducers/auth.reducer'
+import {AuthErrorResponseInterface} from '@shared/interfaces/auth-error-response.interface'
 
 @Component({
   selector: 'ngrx-auth-error',

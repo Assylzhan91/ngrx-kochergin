@@ -5,7 +5,7 @@ import {map, Observable} from 'rxjs'
 import {RegisterRequestInterface} from '@auth/types/register-request.interface'
 import {AuthResponseInterface} from '@auth/types/auth-response.interface'
 import {LoginRequestInterface} from '@auth/types/login-request.interface'
-import {CurrentUserInterface} from '@shared/types/user.interface'
+import {CurrentUserInterface} from '@shared/interfaces/user.interface'
 import {environment} from '@environments'
 
 @Injectable({

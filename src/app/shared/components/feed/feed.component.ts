@@ -9,7 +9,7 @@ import {
 } from '@angular/core'
 import {ActivatedRoute, Params, Router, RouterLink} from '@angular/router'
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop'
-import {CommonModule, JsonPipe} from '@angular/common'
+import {CommonModule} from '@angular/common'
 import {select, Store} from '@ngrx/store'
 import {Observable} from 'rxjs'
 
@@ -17,6 +17,7 @@ import {GetFeedResponseInterface} from '@shared/components/feed/models/get-feed-
 import {ErrorMessageComponent} from '@shared/components/error-message/error-message.component'
 import {PaginationComponent} from '@shared/components/pagination/pagination.component'
 import {getFeedAction} from '@shared/components/feed/store/actions/get-feed.action'
+import {TagListComponent} from '@shared/components/tag-list/tag-list.component'
 import {LoadingComponent} from '@shared/components/loading/loading.component'
 import {environment} from '@environments'
 import {
@@ -29,12 +30,12 @@ import {
   selector: 'ngrx-feed',
   standalone: true,
   imports: [
-    CommonModule,
-    JsonPipe,
-    RouterLink,
     ErrorMessageComponent,
-    LoadingComponent,
     PaginationComponent,
+    TagListComponent,
+    LoadingComponent,
+    CommonModule,
+    RouterLink
   ],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss',

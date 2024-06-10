@@ -1,4 +1,4 @@
-import {ArticleInterface} from '@shared/types/article.interface'
+import {ArticleInterface} from '@shared/interfaces/article.interface'
 
 export interface GetFeedResponseInterface {
   articles: ArticleInterface[]

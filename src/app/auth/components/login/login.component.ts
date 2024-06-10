@@ -5,16 +5,16 @@ import {RouterLink} from '@angular/router'
 import {select, Store} from '@ngrx/store'
 import {Observable} from 'rxjs'
 
-import {AuthErrorResponseInterface} from '@shared/types/auth-error-response.interface'
+import {AuthErrorResponseInterface} from '@shared/interfaces/auth-error-response.interface'
+import {AuthErrorComponent} from '@shared/components/auth-error/auth-error.component'
+import {loginAction} from '@auth/store/actions/login.action'
+import {LoginInterface} from '@shared/interfaces/user.interface'
 import {
   authErrorResponseSelector,
   isAnonymousSelector,
   isLoggedInSelector,
   isSubmittingSelector,
 } from '@auth/store/selectors'
-import {AuthErrorComponent} from '@shared/components/auth-error/auth-error.component'
-import {loginAction} from '@auth/store/actions/login.action'
-import {LoginInterface} from '@shared/types/user.interface'
 
 @Component({
   selector: 'ngrx-register',

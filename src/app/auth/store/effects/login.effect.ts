@@ -5,9 +5,9 @@ import {inject, Injectable} from '@angular/core'
 import {Router} from '@angular/router'
 
 import {loginAction, loginFailureAction, loginSuccessAction} from '@auth/store/actions/login.action'
-import {AuthErrorResponseInterface} from '@shared/types/auth-error-response.interface'
+import {AuthErrorResponseInterface} from '@shared/interfaces/auth-error-response.interface'
 import {PersistenceService} from '@shared/services/persistence.service'
-import {CurrentUserInterface} from '@shared/types/user.interface'
+import {CurrentUserInterface} from '@shared/interfaces/user.interface'
 import {AuthService} from '@auth/services/auth.service'
 
 @Injectable()

@@ -3,7 +3,7 @@ import {catchError, map, of, switchMap} from 'rxjs'
 import {inject, Injectable} from '@angular/core'
 
 import {PersistenceService} from '@shared/services/persistence.service'
-import {CurrentUserInterface} from '@shared/types/user.interface'
+import {CurrentUserInterface} from '@shared/interfaces/user.interface'
 import {AuthService} from '@auth/services/auth.service'
 import {
   getCurrentUserAction,

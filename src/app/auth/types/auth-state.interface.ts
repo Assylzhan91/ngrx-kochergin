@@ -1,5 +1,5 @@
-import {AuthErrorResponseInterface} from '@shared/types/auth-error-response.interface'
-import {CurrentUserInterface} from '@shared/types/user.interface'
+import {AuthErrorResponseInterface} from '@shared/interfaces/auth-error-response.interface'
+import {CurrentUserInterface} from '@shared/interfaces/user.interface'
 
 export interface AuthStateInterface {
   authErrorResponse: AuthErrorResponseInterface | null

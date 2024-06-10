@@ -1,4 +1,4 @@
-import {UserTypes} from '@shared/types/user.interface'
+import {UserTypes} from '@shared/interfaces/user.interface'
 
 export interface RegisterRequestInterface {
   user: UserTypes

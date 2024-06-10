@@ -21,9 +21,10 @@
           </div>
           <div class="pull-xs-right">Add to favorite</div>
           <a class="preview-link" [routerLink]="['/articles', article.slug]">
-            <h1>{{ article.title }}</h1>
-            <p>{{ article.description }}</p>
-            HERE IS LIST OF TAGS
+            <h1 class="preview-link__title">{{ article.title }}</h1>
+            <p class="preview-link__text">{{ article.description }}</p>
+            <span>Read more...</span>
+            <ngrx-tag-list [tags]="article.tagList"></ngrx-tag-list>
           </a>
         </div>
       </div>

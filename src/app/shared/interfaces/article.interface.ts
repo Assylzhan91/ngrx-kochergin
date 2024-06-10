@@ -1,4 +1,5 @@
-import {ProfileInterface} from '@shared/types/profile.interface'
+import {ProfileInterface} from '@shared/interfaces/profile.interface'
+import {PopularTagType} from '@shared/types/popular-tag.type'
 
 export interface ArticleInterface {
   author: ProfileInterface
@@ -8,7 +9,7 @@ export interface ArticleInterface {
   favorited: boolean
   favoritesCount: number
   slug: string
-  tagList: string[]
+  tagList: PopularTagType[]
   title: string
   updatedAt: string
 }

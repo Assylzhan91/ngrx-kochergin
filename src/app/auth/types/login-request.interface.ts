@@ -1,4 +1,4 @@
-import {LoginTypes} from '@shared/types/user.interface'
+import {LoginTypes} from '@shared/interfaces/user.interface'
 
 export interface LoginRequestInterface {
   user: LoginTypes

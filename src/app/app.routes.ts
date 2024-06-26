@@ -13,6 +13,11 @@ import {RegisterEffect} from '@auth/store/effects/register.effect'
 import {LoginEffect} from '@auth/store/effects/login.effect'
 import {HomeComponent} from './home/home.component'
 import {AuthComponent} from '@auth/auth.component'
+import {PopularTagsEffects} from '@shared/components/popular-tags/store/popular-tags.effects'
+import {
+  POPULAR_TAGS_FEATURE_KEY,
+  popularTagsReducer
+} from '@shared/components/popular-tags/store/popular-tags.reducer'
 
 export const routes: Routes = [
   {
@@ -30,7 +35,8 @@ export const routes: Routes = [
     ],
     providers: [
       provideState({name: feedFeatureKey, reducer: feedReducer}),
-      provideEffects([GetFeedEffect]),
+      provideState({name: POPULAR_TAGS_FEATURE_KEY, reducer: popularTagsReducer}),
+      provideEffects([GetFeedEffect, PopularTagsEffects]),
     ],
   },
   {

@@ -1,0 +1,22 @@
+@if (isLoadingSelect()) {
+  <ngrx-loading />
+}
+@if (popularTagsSelect()) {
+  <div class="sidebar">
+    <h3 class="text-lg-center">Popular Tags</h3>
+    <div class="tag-list ">
+      @if (popularTagsSelect()?.length) {
+        @for (tag of popularTagsSelect(); track tag) {
+          <a class="tag-default tag-pill" [routerLink]="['/tags', tag]">{{ tag }}</a>
+        }
+      } @else {
+        <p class="text-danger text-lg-center">No Data</p>
+      }
+    </div>
+  </div>
+}
+
+@if (popularTagsErrorSelect()) {
+  <ngrx-error-message [message]="popularTagsErrorSelect() || ''" />
+}
+

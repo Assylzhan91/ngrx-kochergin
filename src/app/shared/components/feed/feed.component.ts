@@ -74,7 +74,7 @@ export class FeedComponent implements OnInit {
       })
   }
 
-  fetchFeed() {
+  fetchFeed():void {
     const offset = this.currentPage * this.limit - this.limit
     this.store.dispatch(getFeedAction({url: this.articlesUrl, offset}))
   }

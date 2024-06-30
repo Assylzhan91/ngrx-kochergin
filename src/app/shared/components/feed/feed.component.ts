@@ -4,8 +4,10 @@ import {
   DestroyRef,
   inject,
   Input,
+  OnChanges,
   OnInit,
   Signal,
+  SimpleChanges,
 } from '@angular/core'
 import {ActivatedRoute, Params, Router, RouterLink} from '@angular/router'
 import {takeUntilDestroyed} from '@angular/core/rxjs-interop'
@@ -21,9 +23,9 @@ import {TagListComponent} from '@shared/components/tag-list/tag-list.component'
 import {LoadingComponent} from '@shared/components/loading/loading.component'
 import {environment} from '@environments'
 import {
-  isLoadingSelector,
   errorSelector,
   feedSelector,
+  isLoadingSelector,
 } from '@shared/components/feed/store/selectors'
 
 @Component({
@@ -35,13 +37,13 @@ import {
     TagListComponent,
     LoadingComponent,
     CommonModule,
-    RouterLink
+    RouterLink,
   ],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FeedComponent implements OnInit {
+export class FeedComponent implements OnInit, OnChanges {
   activatedRoute = inject(ActivatedRoute)
   destroyRef = inject(DestroyRef)
   router = inject(Router)
@@ -61,6 +63,16 @@ export class FeedComponent implements OnInit {
   ngOnInit(): void {
     this.initializeValues()
   }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    const {articlesUrl} = changes
+    const isApiUrlChanges =
+      !articlesUrl.firstChange && articlesUrl.currentValue !== articlesUrl.previousValue
+    if (isApiUrlChanges) {
+      this.fetchFeed()
+    }
+  }
+
   initializeValues(): void {
     this.baseUrl = this.router.url.split('?')[0]
     this.activatedRoute.queryParams
@@ -74,7 +86,7 @@ export class FeedComponent implements OnInit {
       })
   }
 
-  fetchFeed():void {
+  fetchFeed(): void {
     const offset = this.currentPage * this.limit - this.limit
     this.store.dispatch(getFeedAction({url: this.articlesUrl, offset}))
   }

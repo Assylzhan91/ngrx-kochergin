@@ -29,8 +29,8 @@ export class RegisterComponent implements OnInit {
   isSubmittingSignal = this.store.selectSignal(isSubmittingSelector)
 
   form: FormGroup = this.fb.group({
-    username: ['frgthygfwerthyrethygre', Validators.required],
-    email: ['fgdfhsdrgthy12f@ffghtrhr.dasd', Validators.required],
+    username: ['asylzhan2491bai.com', Validators.required],
+    email: ['asylzhan2491bai@asylzhan.com', Validators.required],
     password: ['sdfghjtrewtytujhtgrf4546f!±34', Validators.required],
   })
 

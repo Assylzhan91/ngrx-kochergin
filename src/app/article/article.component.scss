@@ -1,0 +1,18 @@
+.flex {
+  display: flex;
+}
+
+.loading {
+  height: 100vh;
+   > span {
+     margin: auto;
+     font-size: 50px;
+   }
+}
+
+.preview-link {
+  &__title,
+  &__title {
+    text-align: justify;
+  }
+}

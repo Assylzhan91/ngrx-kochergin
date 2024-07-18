@@ -1,7 +1,7 @@
+import {routerNavigatedAction} from '@ngrx/router-store'
 import {createReducer, on} from '@ngrx/store'
 
 import {ArticleStateInterface} from '../../models/article-state.interface'
-import {routerNavigatedAction} from '@ngrx/router-store'
 import {
   getArticleAction,
   getArticleFailureAction,
@@ -27,9 +27,10 @@ export const articledReducer = createReducer(
     isLoading: false,
     data: article,
   })),
-  on(getArticleFailureAction, (state: ArticleStateInterface) => ({
+  on(getArticleFailureAction, (state: ArticleStateInterface, {error}) => ({
     ...state,
     isLoading: false,
+    error,
   })),
   on(routerNavigatedAction, (state: ArticleStateInterface) => initialState),
 )

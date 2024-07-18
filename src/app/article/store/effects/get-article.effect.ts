@@ -9,6 +9,7 @@ import {
   getArticleFailureAction,
   getArticleSuccessAction,
 } from '../actions/get-article.action'
+import {HttpErrorResponse} from '@angular/common/http'
 
 @Injectable()
 export class GetArticleEffect {
@@ -20,8 +21,12 @@ export class GetArticleEffect {
       ofType(getArticleAction),
       switchMap(({slug}) => {
         return this.sharedArticleService.getArticleList(slug).pipe(
-          map((article: ArticleInterface) => getArticleSuccessAction({article})),
-          catchError(() => of(getArticleFailureAction())),
+          map((article: ArticleInterface) => {
+            return getArticleSuccessAction({article})
+          }),
+          catchError((err: HttpErrorResponse) => {
+            return of(getArticleFailureAction({error: err.message}))
+          }),
         )
       }),
     )

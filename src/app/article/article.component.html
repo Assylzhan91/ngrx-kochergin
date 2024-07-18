@@ -1,0 +1,56 @@
+@if (isLoadingSignal()) {
+  <ngrx-loading />
+}
+
+<div class="article-page">
+  <div class="banner">
+    @if (articleSignal()) {
+      <div class="container">
+        <h1 class="ng-binding">{{ articleSignal()?.title }}</h1>
+        <div class="article-meta">
+          <a [routerLink]="['/profiles', articleSignal()?.author?.username]">
+            <img [src]="articleSignal()?.author?.image" alt="">
+          </a>
+          <div class="info">
+            <a [routerLink]="['/profiles', articleSignal()?.author?.username]">
+              {{ articleSignal()?.author?.username }}
+            </a>
+            <div class="date">{{ articleSignal()?.createdAt }}</div>
+          </div>
+          <!--@if (isAuthorSignal$ | async) {-->
+          <span>
+              <a [routerLink]="['/articles', articleSignal()?.slug, 'edit']" class="btn btn-outline-secondary">
+                <i class="icon icon-edit"></i>
+                Edit Article
+              </a>
+            </span>
+          <!--}-->
+          DELETE BUTTON
+
+        </div>
+      </div>
+    }
+  </div>
+  <div class="container">
+    @if (isLoadingSignal()) {
+      <ngrx-loading />
+    }
+    @if (errorSignal()) {
+      <ngrx-error-message
+        [message]="errorSignal()!"
+      />
+    }
+    @if (articleSignal()) {
+      <div class="row article-content">
+        <div class="col-xs-12">
+          <div>
+            {{ articleSignal()?.body }}
+          </div>
+          <ngrx-tag-list [tags]="articleSignal()!.tagList" />
+        </div>
+      </div>
+    }
+  </div>
+</div>
+
+

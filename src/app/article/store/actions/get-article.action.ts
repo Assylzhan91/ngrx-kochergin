@@ -10,4 +10,7 @@ export const getArticleSuccessAction = createAction(
   props<{article: ArticleInterface}>(),
 )
 
-export const getArticleFailureAction = createAction(ActionType.GET_ARTICLE_FAILURE)
+export const getArticleFailureAction = createAction(
+  ActionType.GET_ARTICLE_FAILURE,
+  props<{error: string}>(),
+)

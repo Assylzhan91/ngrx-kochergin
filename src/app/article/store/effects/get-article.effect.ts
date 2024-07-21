@@ -1,4 +1,5 @@
 import {Actions, createEffect, ofType} from '@ngrx/effects'
+import {HttpErrorResponse} from '@angular/common/http'
 import {catchError, map, of, switchMap} from 'rxjs'
 import {inject, Injectable} from '@angular/core'
 
@@ -9,7 +10,6 @@ import {
   getArticleFailureAction,
   getArticleSuccessAction,
 } from '../actions/get-article.action'
-import {HttpErrorResponse} from '@angular/common/http'
 
 @Injectable()
 export class GetArticleEffect {

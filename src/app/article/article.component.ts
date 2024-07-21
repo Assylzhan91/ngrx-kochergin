@@ -8,6 +8,7 @@ import {ErrorMessageComponent} from '@shared/components/error-message/error-mess
 import {articleSelector, errorSelector, isLoadingSelector} from './store/selectors'
 import {TagListComponent} from '@shared/components/tag-list/tag-list.component'
 import {LoadingComponent} from '@shared/components/loading/loading.component'
+import {deleteArticleAction} from './store/actions/delete-article.action'
 import {ArticleInterface} from '@shared/interfaces/article.interface'
 import {getArticleAction} from './store/actions/get-article.action'
 import {currentUserSelector} from '@auth/store/selectors'
@@ -54,5 +55,9 @@ export class ArticleComponent implements OnInit {
   initializeValues(): void {
     let slug = this.activatedRoute.snapshot.params['slug']
     this.store.dispatch(getArticleAction({slug}))
+  }
+
+  deleteArticle(): void {
+    this.store.dispatch(deleteArticleAction({slug: 'slug'}))
   }
 }

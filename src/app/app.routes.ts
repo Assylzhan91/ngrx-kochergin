@@ -21,6 +21,7 @@ import {HomeComponent} from './home/home.component'
 
 import {PopularTagsEffects} from '@shared/components/popular-tags/store/popular-tags.effects'
 import {GetFeedEffect} from '@shared/components/feed/store/effects/get-feed.effect'
+import {DeleteArticleEffect} from './article/store/effects/delete-article.effect'
 import {GetArticleEffect} from './article/store/effects/get-article.effect'
 import {RegisterEffect} from '@auth/store/effects/register.effect'
 import {LoginEffect} from '@auth/store/effects/login.effect'
@@ -85,7 +86,7 @@ export const routes: Routes = [
     component: ArticleComponent,
     providers: [
       provideState({name: articleFeatureKey, reducer: articledReducer}),
-      provideEffects([GetArticleEffect]),
+      provideEffects([GetArticleEffect, DeleteArticleEffect]),
     ],
   },
 ]

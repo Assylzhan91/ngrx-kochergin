@@ -5,10 +5,7 @@ import {Routes} from '@angular/router'
 import {feedFeatureKey, feedReducer} from '@shared/components/feed/store/reducers/feed.reducers'
 import {articledReducer, articleFeatureKey} from './article/store/reducers/article.reducers'
 import {authFeatureKey, authReducer} from '@auth/store/reducers/auth.reducer'
-import {
-  POPULAR_TAGS_FEATURE_KEY,
-  popularTagsReducer,
-} from '@shared/components/popular-tags/store/popular-tags.reducer'
+import {POPULAR_TAGS_FEATURE_KEY, popularTagsReducer} from '@shared/components/popular-tags/store/popular-tags.reducer'
 
 import {RegisterComponent} from '@auth/components/register/register.component'
 import {GlobalFeedComponent} from './global-feed/global-feed.component'
@@ -25,11 +22,13 @@ import {DeleteArticleEffect} from './article/store/effects/delete-article.effect
 import {GetArticleEffect} from './article/store/effects/get-article.effect'
 import {RegisterEffect} from '@auth/store/effects/register.effect'
 import {LoginEffect} from '@auth/store/effects/login.effect'
+import {CreateArticleComponent} from './create-article/create-article.component'
+import {articleGuard} from '@shared/guards/article.guard'
 
 export const routes: Routes = [
   {
     path: 'home',
-    component: HomeComponent,
+    component: HomeComponent
   },
   {
     path: '',
@@ -37,8 +36,8 @@ export const routes: Routes = [
     providers: [
       provideState({name: feedFeatureKey, reducer: feedReducer}),
       provideState({name: POPULAR_TAGS_FEATURE_KEY, reducer: popularTagsReducer}),
-      provideEffects([GetFeedEffect, PopularTagsEffects]),
-    ],
+      provideEffects([GetFeedEffect, PopularTagsEffects])
+    ]
   },
   {
     path: 'tags/:slug',
@@ -46,8 +45,8 @@ export const routes: Routes = [
     providers: [
       provideState({name: feedFeatureKey, reducer: feedReducer}),
       provideState({name: POPULAR_TAGS_FEATURE_KEY, reducer: popularTagsReducer}),
-      provideEffects([GetFeedEffect, PopularTagsEffects]),
-    ],
+      provideEffects([GetFeedEffect, PopularTagsEffects])
+    ]
   },
   {
     path: 'feed',
@@ -55,13 +54,13 @@ export const routes: Routes = [
     providers: [
       provideState({name: feedFeatureKey, reducer: feedReducer}),
       provideState({name: POPULAR_TAGS_FEATURE_KEY, reducer: popularTagsReducer}),
-      provideEffects([GetFeedEffect, PopularTagsEffects]),
-    ],
+      provideEffects([GetFeedEffect, PopularTagsEffects])
+    ]
   },
   {
     path: '',
     redirectTo: 'feed',
-    pathMatch: 'full',
+    pathMatch: 'full'
   },
   {
     path: '',
@@ -69,24 +68,30 @@ export const routes: Routes = [
     children: [
       {
         path: 'register',
-        component: RegisterComponent,
+        component: RegisterComponent
       },
       {
         path: 'login',
-        component: LoginComponent,
-      },
+        component: LoginComponent
+      }
     ],
     providers: [
       provideState({name: authFeatureKey, reducer: authReducer}),
-      provideEffects([RegisterEffect, LoginEffect]),
-    ],
+      provideEffects([RegisterEffect, LoginEffect])
+    ]
   },
   {
     path: 'articles/:slug',
     component: ArticleComponent,
     providers: [
       provideState({name: articleFeatureKey, reducer: articledReducer}),
-      provideEffects([GetArticleEffect, DeleteArticleEffect]),
+      provideEffects([GetArticleEffect, DeleteArticleEffect])
     ],
+    canActivate: [articleGuard]
   },
+  {
+    path: 'articles/new',
+    component: CreateArticleComponent
+  }
+
 ]

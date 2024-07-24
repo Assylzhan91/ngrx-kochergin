@@ -1,13 +1,13 @@
 <nav class="navbar navbar-light">
   <div class="container">
-    <a class="navbar-brand" [routerLink]="['/']"> medium </a>
+    <a [routerLink]="['/']" class="navbar-brand"> medium </a>
     <ul class="nav navbar-nav pull-xs-right">
       <li class="nav-item">
         <a [routerLink]="['/']" class="nav-link"> Home </a>
       </li>
-      @if (isLoggedIn$ | async; as isLoggedIn) {
+      @if (isLoggedIn$ | async; ) {
         <li class="nav-item">
-          <a [routerLink]="['/articles/new']" class="nav-link">
+          <a [routerLink]="['articles/new']" class="nav-link">
             <i class="ion-compose"></i>
             &nbsp; New Post
           </a>

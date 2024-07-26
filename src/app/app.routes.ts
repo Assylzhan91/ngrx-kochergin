@@ -12,7 +12,6 @@ import {GlobalFeedComponent} from './global-feed/global-feed.component'
 import {LoginComponent} from '@auth/components/login/login.component'
 import {YourFeedComponent} from './your-feed/your-feed.component'
 import {TagFeedComponent} from './tag-feed/tag-feed.component'
-import {ArticleComponent} from './article/article.component'
 import {AuthComponent} from '@auth/auth.component'
 import {HomeComponent} from './home/home.component'
 
@@ -22,8 +21,6 @@ import {DeleteArticleEffect} from './article/store/effects/delete-article.effect
 import {GetArticleEffect} from './article/store/effects/get-article.effect'
 import {RegisterEffect} from '@auth/store/effects/register.effect'
 import {LoginEffect} from '@auth/store/effects/login.effect'
-import {CreateArticleComponent} from './create-article/create-article.component'
-import {articleGuard} from '@shared/guards/article.guard'
 
 export const routes: Routes = [
   {
@@ -81,17 +78,16 @@ export const routes: Routes = [
     ]
   },
   {
+    path: 'articles/new',
+    loadComponent: () => import('./create-article/create-article.component').then(c => c.CreateArticleComponent)
+  },
+  {
     path: 'articles/:slug',
-    component: ArticleComponent,
+    loadComponent: () => import('./article/article.component').then(c => c.ArticleComponent),
     providers: [
       provideState({name: articleFeatureKey, reducer: articledReducer}),
       provideEffects([GetArticleEffect, DeleteArticleEffect])
-    ],
-    canActivate: [articleGuard]
-  },
-  {
-    path: 'articles/new',
-    component: CreateArticleComponent
+    ]
   }
 
 ]

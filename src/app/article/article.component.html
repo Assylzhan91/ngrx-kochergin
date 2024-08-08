@@ -9,7 +9,7 @@
         <h1 class="ng-binding">{{ articleSignal()?.title }}</h1>
         <div class="article-meta">
           <a [routerLink]="['/profiles', articleSignal()?.author?.username]">
-            <img [src]="articleSignal()?.author?.image" alt="">
+            <img [src]="articleSignal()?.author?.image" alt="" />
           </a>
           <div class="info">
             <a [routerLink]="['/profiles', articleSignal()?.author?.username]">
@@ -17,19 +17,21 @@
             </a>
             <div class="date">{{ articleSignal()?.createdAt }}</div>
           </div>
-          <!--@if (isAuthorSignal$ | async) {-->
-          <span>
-              <a [routerLink]="['/articles', articleSignal()?.slug, 'edit']" class="btn btn-outline-secondary">
+          @if (isAuthorSignal$ | async) {
+            <span>
+              <a
+                [routerLink]="['/articles', articleSignal()?.slug, 'edit']"
+                class="btn btn-outline-secondary"
+              >
                 <i class="icon icon-edit"></i>
                 Edit Article
               </a>
             </span>
-          <!--}-->
+          }
           <button class="btn btn-outline-danger btn-small" (click)="deleteArticle()">
             <i class="icon icon-delete"></i>
             Delete
           </button>
-
         </div>
       </div>
     }
@@ -39,9 +41,7 @@
       <ngrx-loading />
     }
     @if (errorSignal()) {
-      <ngrx-error-message
-        [message]="errorSignal()!"
-      />
+      <ngrx-error-message [message]="errorSignal()!" />
     }
     @if (articleSignal()) {
       <div class="row article-content">
@@ -55,5 +55,3 @@
     }
   </div>
 </div>
-
-

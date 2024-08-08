@@ -1,2 +1,5 @@
-<p>create-article works!</p>
-<ngrx-article-form></ngrx-article-form>
+<ngrx-article-form
+  (articleSubmitEvent)="onSubmit($event)"
+  [initialValues]="initialValues"
+  [isSubmitting]="false"
+/>

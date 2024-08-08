@@ -1,5 +1,4 @@
 import {ProfileInterface} from '@shared/interfaces/profile.interface'
-import {PopularTagType} from '@shared/types/popular-tag.type'
 
 export interface ArticleInterface extends ArticleEditInputInterface {
   author: ProfileInterface
@@ -10,10 +9,9 @@ export interface ArticleInterface extends ArticleEditInputInterface {
   updatedAt: string
 }
 
-
-export interface ArticleEditInputInterface {
-  body: string;
-  description: string;
-  tagList: PopularTagType[]
-  title: string;
+export interface ArticleEditInputInterface<TagList = any> {
+  body: string | null
+  description: string | null
+  tagList: TagList
+  title: string | null
 }

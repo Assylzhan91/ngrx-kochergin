@@ -7,8 +7,8 @@ import {Observable} from 'rxjs'
 
 import {AuthErrorResponseInterface} from '@shared/interfaces/auth-error-response.interface'
 import {AuthErrorComponent} from '@shared/components/auth-error/auth-error.component'
-import {loginAction} from '@auth/store/actions/login.action'
 import {LoginInterface} from '@shared/interfaces/user.interface'
+import {loginAction} from '@auth/store/actions/login.action'
 import {
   authErrorResponseSelector,
   isAnonymousSelector,
@@ -50,3 +50,7 @@ export class LoginComponent implements OnInit {
     this.store.dispatch(loginAction({request}))
   }
 }
+
+//  username asylzhan2491bai222
+//  email asylzhan2491bai.asylzhan@com
+// passoword asylzhan2491bai.asylzhan.comasylzhan2491bai.asylzhan.com

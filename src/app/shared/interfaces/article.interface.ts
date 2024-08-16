@@ -12,6 +12,6 @@ export interface ArticleInterface extends ArticleEditInputInterface {
 export interface ArticleEditInputInterface<TagList = any> {
   body: string | null
   description: string | null
-  tagList: TagList
+  tags: TagList
   title: string | null
 }

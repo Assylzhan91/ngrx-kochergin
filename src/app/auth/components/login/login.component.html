@@ -1,4 +1,3 @@
-<h1>{{ isSubmittingSignal() }}</h1>
 <div class="auth-page">
   <div class="container page">
     <div class="row">
@@ -11,28 +10,28 @@
           <ngrx-auth-error [errors]="authErrorResponse$ | async"></ngrx-auth-error>
         }
 
-        <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <form (ngSubmit)="onSubmit()" [formGroup]="form">
           <fieldset>
             <fieldset class="form-group">
               <input
-                type="text"
                 class="form-control form-control-lg"
-                placeholder="Email"
                 formControlName="email"
+                placeholder="Email"
+                type="text"
               />
             </fieldset>
             <fieldset class="form-group">
               <input
-                type="password"
                 class="form-control form-control-lg"
-                placeholder="Password"
                 formControlName="password"
+                placeholder="Password"
+                type="password"
               />
             </fieldset>
             <button
+              [disabled]="(isSubmitting$ | async) || !form.valid"
               class="btn btn-lg btn-primary pull-xs-right"
               type="submit"
-              [disabled]="(isSubmitting$ | async) || !form.valid"
             >
               Sign in
             </button>

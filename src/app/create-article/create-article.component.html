@@ -1,5 +1,6 @@
 <ngrx-article-form
   (articleSubmitEvent)="onSubmit($event)"
+  [errors]="validationErrorsSignal()"
   [initialValues]="initialValues"
-  [isSubmitting]="false"
+  [isSubmitting]="isSubmittingSignal()"
 />

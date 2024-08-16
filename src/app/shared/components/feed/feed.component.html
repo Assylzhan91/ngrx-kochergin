@@ -15,8 +15,8 @@
           </a>
           <div class="info">
             <a class="author" [routerLink]="['/profiles', article.author.username]">{{
-                article.author.username
-              }}</a>
+              article.author.username
+            }}</a>
             <span class="date">{{ article.createdAt }}</span>
           </div>
           <div class="pull-xs-right">Add to favorite</div>
@@ -24,7 +24,7 @@
             <h1 class="preview-link__title">{{ article.title }}</h1>
             <p class="preview-link__text">{{ article.description }}</p>
             <span>Read more...</span>
-            <ngrx-tag-list [tags]="article.tagList"></ngrx-tag-list>
+            <ngrx-tag-list [tags]="article.tags"></ngrx-tag-list>
           </a>
         </div>
       </div>
